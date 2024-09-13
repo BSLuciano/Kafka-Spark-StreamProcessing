@@ -1,0 +1,12 @@
+{
+    "kafka.bootstrap.servers": "kafka-broker-1:9095,kafka-broker-2:9096,kafka-broker-3:9097",
+    "subscribe": "random-user",
+    "startingOffsets": "earliest",
+    "maxOffsetsPerTrigger": 5000,
+    "fetch.max.bytes": 104857600,
+    "fetch.min.bytes": 1048576,
+    "session.timeout.ms": 30000,
+    "heartbeat.interval.ms": 10000,
+    "key.deserializer": "org.apache.kafka.common.serialization.StringDeserializer",
+    "value.deserializer": "org.apache.kafka.common.serialization.StringDeserializer"
+  } 

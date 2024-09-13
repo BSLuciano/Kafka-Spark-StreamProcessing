@@ -1,0 +1,357 @@
+{
+  "type": "struct",
+  "fields": [
+    {
+      "name": "results",
+      "type": {
+        "type": "array",
+        "elementType": {
+          "type": "struct",
+          "fields": [
+            {
+              "name": "gender",
+              "type": "string",
+              "nullable": true,
+              "metadata": {}
+            },
+            {
+              "name": "name",
+              "type": {
+                "type": "struct",
+                "fields": [
+                  {
+                    "name": "title",
+                    "type": "string",
+                    "nullable": true,
+                    "metadata": {}
+                  },
+                  {
+                    "name": "first",
+                    "type": "string",
+                    "nullable": true,
+                    "metadata": {}
+                  },
+                  {
+                    "name": "last",
+                    "type": "string",
+                    "nullable": true,
+                    "metadata": {}
+                  }
+                ]
+              },
+              "nullable": true,
+              "metadata": {}
+            },
+            {
+              "name": "location",
+              "type": {
+                "type": "struct",
+                "fields": [
+                  {
+                    "name": "street",
+                    "type": {
+                      "type": "struct",
+                      "fields": [
+                        {
+                          "name": "number",
+                          "type": "integer",
+                          "nullable": true,
+                          "metadata": {}
+                        },
+                        {
+                          "name": "name",
+                          "type": "string",
+                          "nullable": true,
+                          "metadata": {}
+                        }
+                      ]
+                    },
+                    "nullable": true,
+                    "metadata": {}
+                  },
+                  {
+                    "name": "city",
+                    "type": "string",
+                    "nullable": true,
+                    "metadata": {}
+                  },
+                  {
+                    "name": "state",
+                    "type": "string",
+                    "nullable": true,
+                    "metadata": {}
+                  },
+                  {
+                    "name": "country",
+                    "type": "string",
+                    "nullable": true,
+                    "metadata": {}
+                  },
+                  {
+                    "name": "postcode",
+                    "type": "integer",
+                    "nullable": true,
+                    "metadata": {}
+                  },
+                  {
+                    "name": "coordinates",
+                    "type": {
+                      "type": "struct",
+                      "fields": [
+                        {
+                          "name": "latitude",
+                          "type": "string",
+                          "nullable": true,
+                          "metadata": {}
+                        },
+                        {
+                          "name": "longitude",
+                          "type": "string",
+                          "nullable": true,
+                          "metadata": {}
+                        }
+                      ]
+                    },
+                    "nullable": true,
+                    "metadata": {}
+                  },
+                  {
+                    "name": "timezone",
+                    "type": {
+                      "type": "struct",
+                      "fields": [
+                        {
+                          "name": "offset",
+                          "type": "string",
+                          "nullable": true,
+                          "metadata": {}
+                        },
+                        {
+                          "name": "description",
+                          "type": "string",
+                          "nullable": true,
+                          "metadata": {}
+                        }
+                      ]
+                    },
+                    "nullable": true,
+                    "metadata": {}
+                  }
+                ]
+              },
+              "nullable": true,
+              "metadata": {}
+            },
+            {
+              "name": "email",
+              "type": "string",
+              "nullable": true,
+              "metadata": {}
+            },
+            {
+              "name": "login",
+              "type": {
+                "type": "struct",
+                "fields": [
+                  {
+                    "name": "uuid",
+                    "type": "string",
+                    "nullable": true,
+                    "metadata": {}
+                  },
+                  {
+                    "name": "username",
+                    "type": "string",
+                    "nullable": true,
+                    "metadata": {}
+                  },
+                  {
+                    "name": "password",
+                    "type": "string",
+                    "nullable": true,
+                    "metadata": {}
+                  },
+                  {
+                    "name": "salt",
+                    "type": "string",
+                    "nullable": true,
+                    "metadata": {}
+                  },
+                  {
+                    "name": "md5",
+                    "type": "string",
+                    "nullable": true,
+                    "metadata": {}
+                  },
+                  {
+                    "name": "sha1",
+                    "type": "string",
+                    "nullable": true,
+                    "metadata": {}
+                  },
+                  {
+                    "name": "sha256",
+                    "type": "string",
+                    "nullable": true,
+                    "metadata": {}
+                  }
+                ]
+              },
+              "nullable": true,
+              "metadata": {}
+            },
+            {
+              "name": "dob",
+              "type": {
+                "type": "struct",
+                "fields": [
+                  {
+                    "name": "date",
+                    "type": "string",
+                    "nullable": true,
+                    "metadata": {}
+                  },
+                  {
+                    "name": "age",
+                    "type": "integer",
+                    "nullable": true,
+                    "metadata": {}
+                  }
+                ]
+              },
+              "nullable": true,
+              "metadata": {}
+            },
+            {
+              "name": "registered",
+              "type": {
+                "type": "struct",
+                "fields": [
+                  {
+                    "name": "date",
+                    "type": "string",
+                    "nullable": true,
+                    "metadata": {}
+                  },
+                  {
+                    "name": "age",
+                    "type": "integer",
+                    "nullable": true,
+                    "metadata": {}
+                  }
+                ]
+              },
+              "nullable": true,
+              "metadata": {}
+            },
+            {
+              "name": "phone",
+              "type": "string",
+              "nullable": true,
+              "metadata": {}
+            },
+            {
+              "name": "cell",
+              "type": "string",
+              "nullable": true,
+              "metadata": {}
+            },
+            {
+              "name": "id",
+              "type": {
+                "type": "struct",
+                "fields": [
+                  {
+                    "name": "name",
+                    "type": "string",
+                    "nullable": true,
+                    "metadata": {}
+                  },
+                  {
+                    "name": "value",
+                    "type": "string",
+                    "nullable": true,
+                    "metadata": {}
+                  }
+                ]
+              },
+              "nullable": true,
+              "metadata": {}
+            },
+            {
+              "name": "picture",
+              "type": {
+                "type": "struct",
+                "fields": [
+                  {
+                    "name": "large",
+                    "type": "string",
+                    "nullable": true,
+                    "metadata": {}
+                  },
+                  {
+                    "name": "medium",
+                    "type": "string",
+                    "nullable": true,
+                    "metadata": {}
+                  },
+                  {
+                    "name": "thumbnail",
+                    "type": "string",
+                    "nullable": true,
+                    "metadata": {}
+                  }
+                ]
+              },
+              "nullable": true,
+              "metadata": {}
+            },
+            {
+              "name": "nat",
+              "type": "string",
+              "nullable": true,
+              "metadata": {}
+            }
+          ]
+        },
+        "containsNull": true
+      },
+      "nullable": true,
+      "metadata": {}
+    },
+    {
+      "name": "info",
+      "type": {
+        "type": "struct",
+        "fields": [
+          {
+            "name": "seed",
+            "type": "string",
+            "nullable": true,
+            "metadata": {}
+          },
+          {
+            "name": "results",
+            "type": "integer",
+            "nullable": true,
+            "metadata": {}
+          },
+          {
+            "name": "page",
+            "type": "integer",
+            "nullable": true,
+            "metadata": {}
+          },
+          {
+            "name": "version",
+            "type": "string",
+            "nullable": true,
+            "metadata": {}
+          }
+        ]
+      },
+      "nullable": true,
+      "metadata": {}
+    }
+  ]
+}

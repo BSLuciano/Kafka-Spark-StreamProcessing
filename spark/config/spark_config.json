@@ -1,0 +1,8 @@
+{
+    "spark.sql.shuffle.partitions": 6,
+    "spark.streaming.backpressure.enabled": true,
+    "spark.streaming.kafka.maxRatePerPartition": 2000,
+    "spark.driver.extraClassPath": "/opt/spark/jars/postgresql-42.7.3.jar",
+    "spark.executor.extraClassPath": "/opt/spark/jars/postgresql-42.7.3.jar",
+    "spark.jars": "/opt/spark/drivers/postgresql-42.7.3.jar"
+}

@@ -1,0 +1,248 @@
+version: '3.8'
+
+services:
+
+  kafka-controller-1:
+    image: apache/kafka:latest
+    container_name: kafka-controller-1
+    hostname: kafka-controller-1
+    environment:
+      KAFKA_CLUSTER_ID: 5L6g3nShT-eMCtK--X86sw
+      KAFKA_CONTROLLER_QUORUM_VOTERS: 1@kafka-controller-1:9092,2@kafka-controller-2:9093,3@kafka-controller-3:9094
+      KAFKA_INTER_BROKER_LISTENER_NAME: BROKER
+      KAFKA_CONTROLLER_LISTENER_NAMES: CONTROLLER
+      KAFKA_OFFSETS_TOPIC_REPLICATION_FACTOR: 1
+      KAFKA_TRANSACTION_STATE_LOG_MIN_ISR: 1
+      KAFKA_TRANSACTION_STATE_LOG_REPLICATION_FACTOR: 1
+      KAFKA_GROUP_INITIAL_REBALANCE_DELAY_MS: 0
+      KAFKA_JMX_HOSTNAME: localhost
+      KAFKA_PROCESS_ROLES: controller
+      KAFKA_LISTENER_SECURITY_PROTOCOL_MAP: CONTROLLER:PLAINTEXT,BROKER:PLAINTEXT,PLAINTEXT_HOST:PLAINTEXT,PLAINTEXT:PLAINTEXT
+      KAFKA_JMX_PORT: '49092'
+      KAFKA_NODE_ID: 1
+      KAFKA_LISTENERS: CONTROLLER://0.0.0.0:9092
+      KAFKA_ADVERTISED_LISTENERS: ''
+      KAFKA_LOG_DIRS: '/tmp/kraft-combined-logs'
+    volumes:
+    - kafka-controller-1:/logs/controllers/data
+    ports:
+    - 9092:9092
+    - 29092:29092
+    - 39092:39092
+    - 49092:49092
+    networks:
+    - kafka-net
+    #deploy:
+    #  resources:
+    #    limits:
+    #      cpus: '0.5'
+    #      memory: '384M'
+
+  kafka-controller-2:
+    image: apache/kafka:latest
+    container_name: kafka-controller-2
+    hostname: kafka-controller-2
+    environment:
+      KAFKA_CLUSTER_ID: 5L6g3nShT-eMCtK--X86sw
+      KAFKA_CONTROLLER_QUORUM_VOTERS: 1@kafka-controller-1:9092,2@kafka-controller-2:9093,3@kafka-controller-3:9094
+      KAFKA_INTER_BROKER_LISTENER_NAME: BROKER
+      KAFKA_CONTROLLER_LISTENER_NAMES: CONTROLLER
+      KAFKA_OFFSETS_TOPIC_REPLICATION_FACTOR: 1
+      KAFKA_TRANSACTION_STATE_LOG_MIN_ISR: 1
+      KAFKA_TRANSACTION_STATE_LOG_REPLICATION_FACTOR: 1
+      KAFKA_GROUP_INITIAL_REBALANCE_DELAY_MS: 0
+      KAFKA_JMX_HOSTNAME: localhost
+      KAFKA_PROCESS_ROLES: controller
+      KAFKA_LISTENER_SECURITY_PROTOCOL_MAP: CONTROLLER:PLAINTEXT,BROKER:PLAINTEXT,PLAINTEXT_HOST:PLAINTEXT,PLAINTEXT:PLAINTEXT
+      KAFKA_JMX_PORT: '49093'
+      KAFKA_NODE_ID: 2
+      KAFKA_LISTENERS: CONTROLLER://0.0.0.0:9093
+      KAFKA_ADVERTISED_LISTENERS: ''
+      KAFKA_LOG_DIRS: '/tmp/kraft-combined-logs'
+    volumes:
+    - kafka-controller-2:/logs/controllers/data
+    ports:
+    - 9093:9093
+    - 29093:29093
+    - 39093:39093
+    - 49093:49093
+    networks:
+    - kafka-net
+    #deploy:
+    #  resources:
+    #    limits:
+    #      cpus: '0.5'
+    #      memory: '384M'
+
+  kafka-controller-3:
+    image: apache/kafka:latest
+    container_name: kafka-controller-3
+    hostname: kafka-controller-3
+    environment:
+      KAFKA_CLUSTER_ID: 5L6g3nShT-eMCtK--X86sw
+      KAFKA_CONTROLLER_QUORUM_VOTERS: 1@kafka-controller-1:9092,2@kafka-controller-2:9093,3@kafka-controller-3:9094
+      KAFKA_INTER_BROKER_LISTENER_NAME: BROKER
+      KAFKA_CONTROLLER_LISTENER_NAMES: CONTROLLER
+      KAFKA_OFFSETS_TOPIC_REPLICATION_FACTOR: 1
+      KAFKA_TRANSACTION_STATE_LOG_MIN_ISR: 1
+      KAFKA_TRANSACTION_STATE_LOG_REPLICATION_FACTOR: 1
+      KAFKA_GROUP_INITIAL_REBALANCE_DELAY_MS: 0
+      KAFKA_JMX_HOSTNAME: localhost
+      KAFKA_PROCESS_ROLES: controller
+      KAFKA_LISTENER_SECURITY_PROTOCOL_MAP: CONTROLLER:PLAINTEXT,BROKER:PLAINTEXT,PLAINTEXT_HOST:PLAINTEXT,PLAINTEXT:PLAINTEXT
+      KAFKA_JMX_PORT: '49094'
+      KAFKA_NODE_ID: 3
+      KAFKA_LISTENERS: CONTROLLER://0.0.0.0:9094
+      KAFKA_ADVERTISED_LISTENERS: ''
+      KAFKA_LOG_DIRS: '/tmp/kraft-combined-logs'
+    volumes:
+    - kafka-controller-3:/logs/controllers/data
+    ports:
+    - 9094:9094
+    - 29094:29094
+    - 39094:39094
+    - 49094:49094
+    networks:
+    - kafka-net
+    #deploy:
+    #  resources:
+    #    limits:
+    #      cpus: '0.5'
+    #      memory: '384M'
+
+  kafka-broker-1:
+    image: apache/kafka:latest
+    container_name: kafka-broker-1
+    hostname: kafka-broker-1
+    environment:
+      KAFKA_CLUSTER_ID: 5L6g3nShT-eMCtK--X86sw
+      KAFKA_CONTROLLER_QUORUM_VOTERS: 1@kafka-controller-1:9092,2@kafka-controller-2:9093,3@kafka-controller-3:9094
+      KAFKA_INTER_BROKER_LISTENER_NAME: BROKER
+      KAFKA_CONTROLLER_LISTENER_NAMES: CONTROLLER
+      KAFKA_OFFSETS_TOPIC_REPLICATION_FACTOR: 1
+      KAFKA_TRANSACTION_STATE_LOG_MIN_ISR: 1
+      KAFKA_TRANSACTION_STATE_LOG_REPLICATION_FACTOR: 1
+      KAFKA_GROUP_INITIAL_REBALANCE_DELAY_MS: 0
+      KAFKA_JMX_HOSTNAME: localhost
+      KAFKA_PROCESS_ROLES: broker
+      KAFKA_LISTENER_SECURITY_PROTOCOL_MAP: CONTROLLER:PLAINTEXT,BROKER:PLAINTEXT,PLAINTEXT_HOST:PLAINTEXT,PLAINTEXT:PLAINTEXT
+      KAFKA_JMX_PORT: '39095'
+      KAFKA_NODE_ID: 4
+      KAFKA_LISTENERS: BROKER://0.0.0.0:9095,PLAINTEXT://0.0.0.0:29095
+      KAFKA_ADVERTISED_LISTENERS: BROKER://kafka-broker-1:9095,PLAINTEXT://kafka-broker-1:29095
+      KAFKA_LOG_DIRS: '/tmp/kraft-combined-logs'
+    volumes:
+    - kafka-broker-1:/logs/brokers/data
+    ports:
+    - 9095:9095
+    - 29095:29095
+    - 39095:39095
+    networks:
+    - kafka-net
+    - common-net
+    #deploy:
+    #  resources:
+    #    limits:
+    #      cpus: '0.5'
+    #      memory: '384M'
+
+  kafka-broker-2:
+    image: apache/kafka:latest
+    container_name: kafka-broker-2
+    hostname: kafka-broker-2
+    environment:
+      KAFKA_CLUSTER_ID: 5L6g3nShT-eMCtK--X86sw
+      KAFKA_CONTROLLER_QUORUM_VOTERS: 1@kafka-controller-1:9092,2@kafka-controller-2:9093,3@kafka-controller-3:9094
+      KAFKA_INTER_BROKER_LISTENER_NAME: BROKER
+      KAFKA_CONTROLLER_LISTENER_NAMES: CONTROLLER
+      KAFKA_OFFSETS_TOPIC_REPLICATION_FACTOR: 1
+      KAFKA_TRANSACTION_STATE_LOG_MIN_ISR: 1
+      KAFKA_TRANSACTION_STATE_LOG_REPLICATION_FACTOR: 1
+      KAFKA_GROUP_INITIAL_REBALANCE_DELAY_MS: 0
+      KAFKA_JMX_HOSTNAME: localhost
+      KAFKA_PROCESS_ROLES: broker
+      KAFKA_LISTENER_SECURITY_PROTOCOL_MAP: CONTROLLER:PLAINTEXT,BROKER:PLAINTEXT,PLAINTEXT_HOST:PLAINTEXT,PLAINTEXT:PLAINTEXT
+      KAFKA_JMX_PORT: '39096'
+      KAFKA_NODE_ID: 5
+      KAFKA_LISTENERS: BROKER://0.0.0.0:9096,PLAINTEXT://0.0.0.0:29096
+      KAFKA_ADVERTISED_LISTENERS: BROKER://kafka-broker-2:9096,PLAINTEXT://kafka-broker-2:29096
+      KAFKA_LOG_DIRS: '/tmp/kraft-combined-logs'
+    volumes:
+    - kafka-broker-2:/logs/brokers/data
+    ports:
+    - 9096:9096
+    - 29096:29096
+    - 39096:39096
+    networks:
+    - kafka-net
+    - common-net
+    #deploy:
+    #  resources:
+    #    limits:
+    #      cpus: '0.5'
+    #      memory: '384M'
+
+  kafka-broker-3:
+    image: apache/kafka:latest
+    container_name: kafka-broker-3
+    hostname: kafka-broker-3
+    environment:
+      KAFKA_CLUSTER_ID: 5L6g3nShT-eMCtK--X86sw
+      KAFKA_CONTROLLER_QUORUM_VOTERS: 1@kafka-controller-1:9092,2@kafka-controller-2:9093,3@kafka-controller-3:9094
+      KAFKA_INTER_BROKER_LISTENER_NAME: BROKER
+      KAFKA_CONTROLLER_LISTENER_NAMES: CONTROLLER
+      KAFKA_OFFSETS_TOPIC_REPLICATION_FACTOR: 1
+      KAFKA_TRANSACTION_STATE_LOG_MIN_ISR: 1
+      KAFKA_TRANSACTION_STATE_LOG_REPLICATION_FACTOR: 1
+      KAFKA_GROUP_INITIAL_REBALANCE_DELAY_MS: 0
+      KAFKA_JMX_HOSTNAME: localhost
+      KAFKA_PROCESS_ROLES: broker
+      KAFKA_LISTENER_SECURITY_PROTOCOL_MAP: CONTROLLER:PLAINTEXT,BROKER:PLAINTEXT,PLAINTEXT_HOST:PLAINTEXT,PLAINTEXT:PLAINTEXT
+      KAFKA_JMX_PORT: '39097'
+      KAFKA_NODE_ID: 6
+      KAFKA_LISTENERS: BROKER://0.0.0.0:9097,PLAINTEXT://0.0.0.0:29097
+      KAFKA_ADVERTISED_LISTENERS: BROKER://kafka-broker-3:9097,PLAINTEXT://kafka-broker-3:29097
+      KAFKA_LOG_DIRS: '/tmp/kraft-combined-logs'
+    volumes:
+    - kafka-broker-3:/logs/brokers/data
+    ports:
+    - 9097:9097
+    - 29097:29097
+    - 39097:39097
+    networks:
+    - kafka-net
+    - common-net
+    #deploy:
+    #  resources:
+    #    limits:
+    #      cpus: '1'
+    #      memory: '512M'
+
+volumes:
+
+  kafka-controller-1:
+    external: false
+
+  kafka-controller-2:
+    external: false
+
+  kafka-controller-3:
+    external: false
+
+  kafka-broker-1:
+    external: false
+
+  kafka-broker-2:
+    external: false
+
+  kafka-broker-3:
+    external: false
+
+  kafka-controller-dirs:
+    external: false
+
+networks:
+  kafka-net:
+    driver: bridge
+  common-net:
+    driver: bridge

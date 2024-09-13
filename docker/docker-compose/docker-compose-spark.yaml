@@ -1,0 +1,71 @@
+version: '3.8'
+
+x-spark-workers:
+  &spark-workers
+  image: spark-dotenv #apache/spark:3.4.0
+  environment:
+    - SPARK_MODE=worker
+    - SPARK_WORKER_CORES=4
+    - SPARK_WORKER_MEMORY=1024M
+    - SPARK_WORKER_MASTER_URL='spark://spark-master:7077'
+    - SPARK_SUBMIT_OPTIONS=--packages org.apache.spark:spark-sql-kafka-0-10_2.12:3.4.0
+    - SPARK_DRIVER_EXTRA_CLASSPATH=/opt/spark/jars/postgresql-42.7.3.jar
+    - SPARK_EXECUTOR_EXTRA_CLASSPATH=/opt/spark/jars/postgresql-42.7.3.jar
+  networks: 
+    - spark-net
+    - common-net
+  depends_on:
+    - spark
+  volumes:
+    - spark_logs:/opt/spark/logs
+    - ../../spark/scripts:/opt/spark/scripts
+    - ../../spark/config:/opt/spark/config
+    - ../../spark/lib:/opt/spark/lib
+    - ../../spark/drivers/postgresql-42.7.3.jar:/opt/spark/drivers/postgresql-42.7.3.jar
+  command: /opt/spark/bin/spark-class org.apache.spark.deploy.worker.Worker spark://spark-master:7077
+
+services:
+  spark:
+    container_name: spark-master
+    image: spark-dotenv #apache/spark:3.4.0
+    environment:
+      - SPARK_MODE=master
+      - SPARK_RPC_AUTHENTICATION_ENABLED=no
+      - SPARK_SUBMIT_OPTIONS=--packages org.apache.spark:spark-sql-kafka-0-10_2.12:3.4.0
+      - SPARK_DRIVER_EXTRA_CLASSPATH=/opt/spark/jars/postgresql-42.7.3.jar
+      - SPARK_EXECUTOR_EXTRA_CLASSPATH=/opt/spark/jars/postgresql-42.7.3.jar
+    ports:
+      - "8181:8080"
+      - "7077:7077"
+    networks: 
+      - spark-net
+      - common-net
+    volumes:
+      - spark_logs:/opt/spark/logs
+      - ../../spark/scripts:/opt/spark/scripts
+      - ../../spark/config:/opt/spark/config
+      - ../../spark/lib:/opt/spark/lib
+      - ../../spark/drivers/postgresql-42.7.3.jar:/opt/spark/drivers/postgresql-42.7.3.jar
+    command: /opt/spark/bin/spark-class org.apache.spark.deploy.master.Master
+
+  worker-1:
+    container_name: spark-worker-1
+    <<: *spark-workers
+
+  worker-2:
+    container_name: spark-worker-2
+    <<: *spark-workers
+
+  worker-3:
+    container_name: spark-worker-3
+    <<: *spark-workers
+
+networks: 
+  spark-net:
+    driver: bridge
+  common-net:
+    driver: bridge
+
+volumes:
+  spark_logs:
+    external: false

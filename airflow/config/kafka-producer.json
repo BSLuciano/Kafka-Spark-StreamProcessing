@@ -1,0 +1,16 @@
+{
+    "client.id": "producer",
+    "bootstrap.servers": "kafka-broker-1:9095,kafka-broker-2:9096,kafka-broker-3:9097",
+    "key.serializer": "org.apache.kafka.common.serialization.StringSerializer",
+    "value.serializer": "org.apache.kafka.common.serialization.StringSerializer",
+    "acks": "all",
+    "retries": 3,
+    "linger.ms": 0,
+    "compression.type": "lz4",
+    "enable.idempotence": true,
+    "max.in.flight.requests.per.connection": 1,
+    "request.timeout.ms": 20000,
+    "delivery.timeout.ms": 30000,
+    "buffer.memory": 5242880,
+    "max.block.ms": 5000
+}
